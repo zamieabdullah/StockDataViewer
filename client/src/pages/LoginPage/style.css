@@ -1,0 +1,15 @@
+.centered {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+
+form {
+    background-color: antiquewhite;
+    padding: 10px;
+    width: 25em;
+    height: 25em;
+    box-shadow: 10px 10px 5px gray;
+}

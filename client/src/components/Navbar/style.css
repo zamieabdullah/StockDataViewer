@@ -1,0 +1,40 @@
+header {
+    padding: 100px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-left: 1%;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1%;
+}
+
+button.navbar-toggler {
+    margin-right: 10px;
+}
+
+div#navbarNav.navbar-collapse {
+    margin-left: 10px;
+}
+
+.navbar-collapse.collapse .nav-link {
+    transition: transform 0.1s ease;
+}
+
+.navbar-collapse.collapse .nav-link:hover{
+    color: rgb(98, 164, 226);
+    transform: translate(1%, 0%);
+}
+
+@media (min-width: 992px) {
+    .navbar-collapse.collapse .nav-link:hover {
+        background-color: rgba(50, 240, 224, 0.377);
+        color: rgb(98, 164, 226);
+        transform: scale(1.1);
+    }
+}
