@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+from datetime import timedelta
 from models.model import db
 import os
 
@@ -8,15 +10,18 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# importing models
-from models.users import User
-
 # importing routes
 from controllers.users import bp as user_routes
 
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+# enable JSONWebToken
+jwt = JWTManager(app)
+app.config['JWT_SECRET_KEY'] = f"{os.getenv('JWT_PK')}"
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
+app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=30)
 
 # Configure PostgreSQL connection
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@" \

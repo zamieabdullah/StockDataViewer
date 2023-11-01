@@ -29,6 +29,7 @@ div#navbarNav.navbar-collapse {
 .navbar-collapse.collapse .nav-link:hover{
     color: rgb(98, 164, 226);
     transform: translate(1%, 0%);
+    cursor: pointer;
 }
 
 @media (min-width: 992px) {

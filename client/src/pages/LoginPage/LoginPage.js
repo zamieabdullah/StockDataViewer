@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 import './style.css'
 
 function LoginPage() {
+    const navigate = useNavigate();
+
     const [user, setUser] = useState({
         email: '',
         password: '',
@@ -35,8 +37,21 @@ function LoginPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(user.email);
-        console.log(user.password);
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            localStorage.setItem('access', data.token);
+            window.location.reload(false);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
 
     return (
@@ -51,7 +66,7 @@ function LoginPage() {
                                 <i className="bi bi-envelope"></i>
                             </span>
                         </div>
-                        <input type="email" className="form-control" name="email" value={user.email} onChange={handleChange} placeholder="Email Address"></input>
+                        <input type="email" className="form-control" name="email" value={user.email} onChange={handleChange} placeholder="Email Address" required></input>
                     </div>
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">
@@ -59,7 +74,7 @@ function LoginPage() {
                                 <i className={password.icon} onClick={handlePassword}></i>
                             </span>
                         </div>
-                        <input type={password.type} className="form-control" name="password" value={user.password} onChange={handleChange} placeholder="Password"></input>
+                        <input type={password.type} className="form-control" name="password" value={user.password} onChange={handleChange} placeholder="Password" required></input>
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary d-inline-block mt-4">Log In</button>

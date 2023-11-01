@@ -36,9 +36,22 @@ function SignupPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(user.first_name + ' ' + user.last_name);
-        console.log(user.email);
-        console.log(user.password);
+
+        fetch('http://localhost:5000/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            localStorage.setItem('access', data.token)
+            window.location.reload(false);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     return (
