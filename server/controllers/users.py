@@ -54,6 +54,14 @@ def signup():
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
-@bp.route('/logout', methods=['POST'])
-def logout():
-    return 'logging out'
+@bp.route('/getuser', methods=['GET'])
+@jwt_required()
+def getuser():
+    user_id = get_jwt_identity()
+    existing_user = User.query.filter_by(id=user_id).first()
+
+    response = {'first_name': existing_user.first_name, 
+                'last_name': existing_user.last_name,
+                'email_address': existing_user.email_address}
+
+    return jsonify({'user': response}), 200
