@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from models.model import db
-from models.users import User
+from models.users import User, SymbToUser
 
 bp = Blueprint('routes', __name__)
 
@@ -65,3 +65,15 @@ def getuser():
                 'email_address': existing_user.email_address}
 
     return jsonify({'user': response}), 200
+
+@bp.route('/getsymbols', methods=['GET'])
+@jwt_required()
+def getsymbols():
+    user_id = get_jwt_identity()
+    symbols_for_user = SymbToUser.query.filter_by(user_id=user_id).all()
+
+    symbols = []
+    for symbol in symbols_for_user:
+        symbols.append(symbol.symbol)
+
+    return jsonify({'symbols': symbols})

@@ -58,7 +58,7 @@ function LoginPage() {
         <Fragment>
             <Navbar />
             <div className="centered">
-                <form onSubmit={handleSubmit}>
+                <form className='user-form' onSubmit={handleSubmit}>
                     <h3 className="text-center mb-4">Log In</h3>
                     <div className="input-group mb-4">
                         <div className="input-group-prepend">

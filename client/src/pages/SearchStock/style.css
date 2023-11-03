@@ -1,0 +1,20 @@
+.centered-stock {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+}
+
+.chart-centering {
+    width: 50%;
+    margin: 0 auto; /* Center the form horizontally within its container */
+    text-align: center; /* Center the form contents */
+}

@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
   }
 
-form {
+.user-form {
     background-color: antiquewhite;
     padding: 10px;
     width: 25em;
