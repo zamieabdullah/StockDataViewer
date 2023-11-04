@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import SignupPage from "../pages/SignupPage/Signup";
-import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import SearchStock from "../pages/SearchStock/SearchStock";
 
 function AppRoutes () {
@@ -33,19 +32,20 @@ function AppRoutes () {
     if (auth.isAuth) {
         return (
             <Routes>
-                <Route exact path='/' element={<DashboardPage/>}/>
-                <Route exact path='/search' element={<SearchStock/>}/>
+                <Route exact path='/' element={<SearchStock/>}/>
+                <Route path='*' element={<Navigate to='/' replace/>}/>
             </Routes>
         )
+    } else {
+        return (
+            <Routes>
+                <Route exact path='/' element={<HomePage/>}/>
+                <Route exact path='/login' element={<LoginPage/>}/>
+                <Route exact path='/signup' element={<SignupPage/>}/>
+                <Route path='*' element={<Navigate to='/' replace/>}/>
+            </Routes>
+        );
     }
-
-    return (
-        <Routes>
-            <Route exact path='/' element={<HomePage/>}/>
-            <Route exact path='/login' element={<LoginPage/>}/>
-            <Route exact path='/signup' element={<SignupPage/>}/>
-        </Routes>
-    );
 }
 
 export default AppRoutes;

@@ -30,7 +30,7 @@ function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">{!auth.isAuth ? "Home" : "Dashboard"}</Link>
+                        <Link className="nav-link" to="/">{!auth.isAuth ? "Home" : "Stock Search"}</Link>
                     </li>
                     <li className="nav-item">
                         {!auth.isAuth ? <Link className="nav-link" to="/login">Log In</Link>: <span className="nav-link" onClick={logOut}>Log Out</span>}

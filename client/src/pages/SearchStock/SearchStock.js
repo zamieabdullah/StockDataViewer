@@ -148,7 +148,7 @@ function SearchStock() {
                             </span>
                         </div>
                         <input type="text" className="form-control" name='symbol' value={search.symbol} onChange={handleChange} placeholder="Stock Symbol" required></input>
-                        <button type="button" className="btn btn-success" onClick={getStock}>Search</button>
+                        <button type="button" className="btn btn-primary" onClick={getStock}>Search</button>
                     </div>
                 </form>
                 {chart.stockChartXValues.length == 0 || chart.stockChartYValues.length == 0 ? null : 
@@ -169,11 +169,11 @@ function SearchStock() {
                 }
                 <div className="centered-stock">
                     <div>
-                        <button type='button' className='btn btn-light ms-3 me-3' onClick={getOpenPrices}>Open Price</button>
-                        <button type='button' className='btn btn-light ms-3 me-3' onClick={getClosePrices}>Close Price</button>
-                        <button type='button' className='btn btn-light ms-3 me-3' onClick={getHighPrices}>High Price</button>
-                        <button type='button' className='btn btn-light ms-3 me-3' onClick={getLowPrices}>Low Price</button>
-                        <button type='button' className='btn btn-light ms-3 me-3' onClick={getVolumePrices}>Volume Price</button>
+                        <button type='button' className='btn btn-primary ms-3 me-3' onClick={getOpenPrices}>Open Price</button>
+                        <button type='button' className='btn btn-primary ms-3 me-3' onClick={getClosePrices}>Close Price</button>
+                        <button type='button' className='btn btn-primary ms-3 me-3' onClick={getHighPrices}>High Price</button>
+                        <button type='button' className='btn btn-primary ms-3 me-3' onClick={getLowPrices}>Low Price</button>
+                        <button type='button' className='btn btn-primary ms-3 me-3' onClick={getVolumePrices}>Volume Price</button>
                     </div>
                 </div>
             </div>
