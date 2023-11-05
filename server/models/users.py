@@ -8,16 +8,9 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     email_address = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(1000), nullable=False)
-    symb_to_user = db.relationship('SymbToUser', backref='user')
 
     def set_password(self, password):
         self.password = pbkdf2_sha256.hash(password)
 
     def verify_password(self, password):
         return pbkdf2_sha256.verify(password, self.password)
-    
-class SymbToUser(db.Model):
-    __tablename__ = 'symb_to_user'
-    id = db.Column(db.Integer, primary_key=True)
-    symbol = db.Column(db.String(10), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
